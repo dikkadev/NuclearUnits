@@ -158,6 +158,10 @@ Standard local build:
 dotnet build NuclearUnits.csproj -c Release
 ```
 
+Build output:
+
+- `bin/Release/NuclearUnits.dll`
+
 ## Creating A Release
 
 This project uses a local release script, like the other mod in this workspace.

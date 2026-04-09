@@ -3,11 +3,9 @@
     <TargetFramework>netstandard2.1</TargetFramework>
     <AssemblyName>NuclearUnits</AssemblyName>
     <RootNamespace>NuclearUnits</RootNamespace>
-    <LangVersion>latest</LangVersion>
     <Nullable>enable</Nullable>
-    <PlatformTarget>x64</PlatformTarget>
-    <Platforms>x64</Platforms>
-    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+    <GenerateDependencyFile>false</GenerateDependencyFile>
     <NuclearOptionManagedDir>/mnt/d/SteamLibrary/steamapps/common/Nuclear Option/NuclearOption_Data/Managed</NuclearOptionManagedDir>
     <BepInExCoreDir>/mnt/d/SteamLibrary/steamapps/common/Nuclear Option/BepInEx/core</BepInExCoreDir>
   </PropertyGroup>
@@ -43,10 +41,6 @@
     </Reference>
     <Reference Include="UnityEngine.UI">
       <HintPath>$(NuclearOptionManagedDir)/UnityEngine.UI.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="Unity.TextMeshPro">
-      <HintPath>$(NuclearOptionManagedDir)/Unity.TextMeshPro.dll</HintPath>
       <Private>False</Private>
     </Reference>
   </ItemGroup>

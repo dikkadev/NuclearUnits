@@ -73,7 +73,7 @@ run mkdir -p "$PACKAGE_ROOT"
 echo "Building Release..."
 run dotnet build "$REPO_ROOT/NuclearUnits.csproj" -c Release
 
-run cp "$REPO_ROOT/bin/Release/netstandard2.1/NuclearUnits.dll" "$PACKAGE_ROOT/NuclearUnits.dll"
+run cp "$REPO_ROOT/bin/Release/NuclearUnits.dll" "$PACKAGE_ROOT/NuclearUnits.dll"
 run cp "$REPO_ROOT/README.md" "$PACKAGE_ROOT/README.md"
 
 run rm -f "$ARCHIVE_PATH"
