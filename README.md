@@ -158,19 +158,25 @@ Standard local build:
 dotnet build NuclearUnits.csproj -c Release
 ```
 
-## GitHub Releases
+## Creating A Release
 
-This repo includes a GitHub Actions release workflow, but because the mod builds against assemblies from a local game install, it is intended for a self-hosted runner that has:
+This project uses a local release script, like the other mod in this workspace.
 
-- `Nuclear Option` installed
-- `BepInEx` installed for that copy
-- the same local assembly paths available to the build
+Release script:
 
-The workflow:
+- `scripts/create-release.sh`
 
-- builds `NuclearUnits.dll`
-- packages it into a `NuclearUnits` plugin folder
-- uploads a zip to the GitHub release
+Example:
+
+```bash
+./scripts/create-release.sh v0.1.0
+```
+
+That script will:
+
+- build `Release`
+- package `NuclearUnits.dll` and `README.md`
+- create a GitHub release with `gh`
 
 ## Roadmap
 
