@@ -3,8 +3,8 @@
 set -euo pipefail
 
 usage() {
-  echo "Usage: $0 [--dry-run] <tag>" >&2
-  echo "Example: $0 v0.1.0" >&2
+  echo "Usage: $0 [--dry-run]" >&2
+  echo "Builds the release using the version from NuclearUnits.csproj." >&2
 }
 
 DRY_RUN=0
@@ -26,14 +26,20 @@ while [[ $# -gt 0 ]]; do
   esac
 done
 
-if [[ $# -ne 1 ]]; then
+if [[ $# -ne 0 ]]; then
   usage
   exit 1
 fi
 
-TAG="$1"
 SCRIPT_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
 REPO_ROOT="$(cd -- "$SCRIPT_DIR/.." && pwd)"
+VERSION="$(grep -oPm1 '(?<=<Version>)[^<]+' "$REPO_ROOT/NuclearUnits.csproj")"
+if [[ -z "$VERSION" ]]; then
+  echo "Unable to determine project version from NuclearUnits.csproj" >&2
+  exit 1
+fi
+
+TAG="v$VERSION"
 DIST_DIR="$REPO_ROOT/dist"
 STAGE_ROOT="$DIST_DIR/stage"
 PACKAGE_ROOT="$STAGE_ROOT/NuclearUnits"
@@ -49,6 +55,7 @@ require_command() {
 require_command dotnet
 require_command gh
 require_command 7z
+require_command grep
 
 run() {
   if [[ "$DRY_RUN" -eq 1 ]]; then
@@ -63,6 +70,11 @@ run() {
 
 if [[ ! -f "$REPO_ROOT/README.md" ]]; then
   echo "Missing README.md. Add project documentation before publishing a release." >&2
+  exit 1
+fi
+
+if gh release view "$TAG" >/dev/null 2>&1; then
+  echo "GitHub release $TAG already exists. Bump <Version> in NuclearUnits.csproj before publishing again." >&2
   exit 1
 fi
 

@@ -3,6 +3,9 @@
     <TargetFramework>netstandard2.1</TargetFramework>
     <AssemblyName>NuclearUnits</AssemblyName>
     <RootNamespace>NuclearUnits</RootNamespace>
+    <Version>1.2.0</Version>
+    <BepInExPluginGuid>dev.dikka.nuclearunits</BepInExPluginGuid>
+    <BepInExPluginName>NuclearUnits</BepInExPluginName>
     <Nullable>enable</Nullable>
     <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
     <GenerateDependencyFile>false</GenerateDependencyFile>
@@ -11,6 +14,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="BepInEx.PluginInfoProps" Version="2.1.0" />
     <Reference Include="BepInEx">
       <HintPath>$(BepInExCoreDir)/BepInEx.dll</HintPath>
       <Private>False</Private>

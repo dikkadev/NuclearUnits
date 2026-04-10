@@ -95,7 +95,7 @@ Config entries are created automatically after the mod loads.
 
 Main config file:
 
-- `BepInEx/config/com.dikka.nuclearunits.cfg`
+- `BepInEx/config/dev.dikka.nuclearunits.cfg`
 
 You can configure the mod through:
 
@@ -173,13 +173,15 @@ Release script:
 Example:
 
 ```bash
-./scripts/create-release.sh v0.1.0
+./scripts/create-release.sh
 ```
 
 That script will:
 
 - build `Release`
 - package `NuclearUnits.dll` and `README.md`
+- read the release version from `NuclearUnits.csproj`
+- stop if that GitHub release tag already exists
 - create a GitHub release with `gh`
 
 ## Roadmap

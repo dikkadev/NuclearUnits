@@ -4,13 +4,9 @@ using HarmonyLib;
 
 namespace NuclearUnits
 {
-    [BepInPlugin(PluginGuid, PluginName, PluginVersion)]
+    [BepInPlugin(MyPluginInfo.PLUGIN_GUID, MyPluginInfo.PLUGIN_NAME, MyPluginInfo.PLUGIN_VERSION)]
     public sealed class Plugin : BaseUnityPlugin
     {
-        public const string PluginGuid = "com.dikka.nuclearunits";
-        public const string PluginName = "NuclearUnits";
-        public const string PluginVersion = "0.1.0";
-
         internal static Plugin Instance { get; private set; } = null!;
 
         private Harmony? _harmony;
@@ -42,10 +38,10 @@ namespace NuclearUnits
             Instance = this;
             BindConfig();
 
-            _harmony = new Harmony(PluginGuid);
+            _harmony = new Harmony(MyPluginInfo.PLUGIN_GUID);
             _harmony.PatchAll();
 
-            Logger.LogInfo($"Loaded {PluginName} {PluginVersion}");
+            Logger.LogInfo($"Loaded {MyPluginInfo.PLUGIN_NAME} {MyPluginInfo.PLUGIN_VERSION}");
         }
 
         private void OnDestroy()
